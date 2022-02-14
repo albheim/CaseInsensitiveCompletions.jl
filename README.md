@@ -1,0 +1,1 @@
+# CaseInsensitiveCompletions.jl
