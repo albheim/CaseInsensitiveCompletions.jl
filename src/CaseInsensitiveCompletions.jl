@@ -1,3 +1,6 @@
+# These methods are coped from the julia source and slightly modified
+# Julia licence is here https://github.com/JuliaLang/julia/blob/master/LICENSE.md
+
 module CaseInsensitiveCompletions
 
 using Pkg
