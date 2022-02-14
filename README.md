@@ -1,6 +1,6 @@
 # CaseInsensitiveCompletions.jl
 
-A small package to test if allowing case insensitive package completions in the REPL is nice.
+A small package to to allow case insensitive package completions in the REPL.
 
 For now it is just affecting the `pkg>` mode, but could be extended to other parts also.
 
