@@ -1,0 +1,8 @@
+name = "CaseInsensitiveCompletions"
+uuid = "d79cf71d-9efe-4d52-8a49-64fa6afe957a"
+authors = ["Albin Heimerson <albin.heimerson@control.lth.se>"]
+version = "0.1.0"
+
+[deps]
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
