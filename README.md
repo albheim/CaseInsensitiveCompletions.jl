@@ -1,13 +1,24 @@
 # CaseInsensitiveCompletions.jl
 
-A small package to to allow case insensitive package completions in the REPL.
+A small package to test out case insensitive package completions in the REPL.
 
-For now it is just affecting the `pkg>` mode, but could be extended to other parts also.
+The current implementation was just a quick thing to be able to test this, and is overwriting stdlib methods which will create some warnings.
+
+It currently just makes all comparisons in lowercase and completes as much as possible in lowercase. 
+If a single completion exists it will put it with correct casing, or when one of the possible completions is the same as the current completion it will use the casing of that completion (`import libc[tab]` becomes `import LibCURL`).
+
+It currently works for packages, both with `pkg> add/remove/update name[tab]` and `using/import name[tab]`.
+
+Since it is overwriting internal julia methods it might not work well with julia version other than v1.7.2, but I haven't tried.
 
 ## Install
-`]add https://github.com/albheim/CaseInsensitiveCompletions.jl`
+```julia
+]add https://github.com/albheim/CaseInsensitiveCompletions.jl
+```
 
 ## Usage
-Just use the package like `using CaseInsensitiveCompletions` and it should work.
-
-To have this as a default put it in your `startup.jl`.
+Running
+```julia
+using CaseInsensitiveCompletions
+```
+should overwrite existing methods.
