@@ -60,15 +60,15 @@ function LineEdit.complete_line(s::LineEdit.PromptState, repeats::Int)
     else
         lc_completions = lowercase.(completions)
         p = LineEdit.common_prefix(lc_completions)
-        if !isempty(p) 
+        if !isempty(p) && p != lowercase(partial)
             ind = findfirst(==(p), lc_completions)
             if ind !== nothing
                 prev_pos = LineEdit.position(s)
                 LineEdit.push_undo(s)
                 LineEdit.edit_splice!(s, (prev_pos - sizeof(partial)) => prev_pos, completions[ind])
-            elseif p != lowercase(partial)
+            else
                 # All possible completions share the same prefix, so we might as
-                # well complete that
+                # well complete that, question is if we can case it or not
                 p2 = LineEdit.common_prefix(completions)
                 if lowercase(p2) == p # Same length, use p2 to keep casing
                     prev_pos = LineEdit.position(s)
