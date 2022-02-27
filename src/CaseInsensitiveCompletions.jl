@@ -69,9 +69,16 @@ function LineEdit.complete_line(s::LineEdit.PromptState, repeats::Int)
             elseif p != lowercase(partial)
                 # All possible completions share the same prefix, so we might as
                 # well complete that
-                prev_pos = LineEdit.position(s)
-                LineEdit.push_undo(s)
-                LineEdit.edit_splice!(s, (prev_pos - sizeof(partial)) => prev_pos, p)
+                p2 = LineEdit.common_prefix(completions)
+                if lowercase(p2) == p # Same length, use p2 to keep casing
+                    prev_pos = LineEdit.position(s)
+                    LineEdit.push_undo(s)
+                    LineEdit.edit_splice!(s, (prev_pos - sizeof(partial)) => prev_pos, p2)
+                else
+                    prev_pos = LineEdit.position(s)
+                    LineEdit.push_undo(s)
+                    LineEdit.edit_splice!(s, (prev_pos - sizeof(partial)) => prev_pos, p)
+                end
             end
         elseif repeats > 0
             LineEdit.show_completions(s, completions)
